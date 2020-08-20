@@ -1,5 +1,5 @@
-const express = require("express");
-const cors = require("cors");
+const express = require('express');
+const cors = require('cors');
 const { v4: uuid } = require('uuid');
 
 
@@ -12,12 +12,14 @@ app.use(cors());
 const repositories = [];
 
 
-app.get("/repositories", (request, response) => {
+// Listar os repositórios existentes
+app.get('/repositories', (request, response) => {
   return response.json(repositories);
 });
 
 
-app.post("/repositories", (request, response) => {
+// Incluir novo repositório
+app.post('/repositories', (request, response) => {
   const { title, url, techs } = request.body;
 
   const repository = {
@@ -34,7 +36,8 @@ app.post("/repositories", (request, response) => {
 });
 
 
-app.put("/repositories/:id", (request, response) => {
+// Alterar o repositório indicado
+app.put('/repositories/:id', (request, response) => {
   const { id } = request.params;
   const { title, url, techs } = request.body;
 
@@ -59,7 +62,8 @@ app.put("/repositories/:id", (request, response) => {
 });
 
 
-app.delete("/repositories/:id", (request, response) => {
+// Excluir o repositório indicado
+app.delete('/repositories/:id', (request, response) => {
   const { id } = request.params;
 
   // Procura pelo repositório com o id informado
@@ -75,7 +79,8 @@ app.delete("/repositories/:id", (request, response) => {
 });
 
 
-app.post("/repositories/:id/like", (request, response) => {
+// Incrementa em 1 unidade a contagem de 'likes' do repositório indicado
+app.post('/repositories/:id/like', (request, response) => {
   const { id } = request.params;
 
   // Procura pelo repositório com o id informado
